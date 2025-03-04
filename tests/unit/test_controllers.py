@@ -54,3 +54,8 @@ def test_user_controller_update(controller: UserController, repository: Mock) ->
     result = controller.update(user_id, user_data)
     assert result == updated_user
     repository.update.assert_called_once_with(user_id, user_data)
+
+def test_user_controller_delete(controller: UserController, repository: Mock) -> None:
+    user_id = 1
+    controller.delete(user_id)
+    repository.delete.assert_called_once_with(user_id)

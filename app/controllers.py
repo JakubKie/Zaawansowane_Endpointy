@@ -15,3 +15,6 @@ class UserController:
 
     def update(self, user_id: int, user_data: dict) -> dict:
         return self.repository.update(user_id, user_data)
+
+    def delete(self, user_id: int) -> None:
+        self.repository.delete(user_id)

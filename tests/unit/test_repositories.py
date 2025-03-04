@@ -13,3 +13,7 @@ def test_user_repository():
 
     updated_user = repo.update(1, {"lastName": "Smith"})
     assert updated_user["lastName"] == "Smith"
+
+    repo.delete(1)
+    with raises(ValueError):
+        repo.get(1)

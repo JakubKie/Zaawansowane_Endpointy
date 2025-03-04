@@ -22,3 +22,8 @@ class UserRepository:
             raise ValueError("User not found")
         self._users[user_id].update(user_data)
         return self._users[user_id]
+
+    def delete(self, user_id: int) -> None:
+        if user_id not in self._users:
+            raise ValueError("User not found")
+        del self._users[user_id]
