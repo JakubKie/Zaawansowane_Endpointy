@@ -59,3 +59,20 @@ def test_user_controller_delete(controller: UserController, repository: Mock) ->
     user_id = 1
     controller.delete(user_id)
     repository.delete.assert_called_once_with(user_id)
+
+def test_user_controller_update_not_found(controller: UserController, repository: Mock) -> None:
+    user_id = 1
+    user_data = {"lastName": "Smith"}
+    repository.update.side_effect = ValueError("User not found")
+
+    with raises(ValueError, match="User not found"):
+        controller.update(user_id, user_data)
+    repository.update.assert_called_once_with(user_id, user_data)
+
+def test_user_controller_delete_not_found(controller: UserController, repository: Mock) -> None:
+    user_id = 1
+    repository.delete.side_effect = ValueError("User not found")
+
+    with raises(ValueError, match="User not found"):
+        controller.delete(user_id)
+    repository.delete.assert_called_once_with(user_id)
