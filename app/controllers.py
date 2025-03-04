@@ -6,3 +6,9 @@ class UserController:
 
     def get(self, user_id: int) -> dict:
         return self.repository.get(user_id=user_id)
+
+    def get_all(self) -> list:
+        return self.repository.get_all()
+
+    def add(self, user_data: dict) -> dict:
+        return self.repository.add(user_data)
