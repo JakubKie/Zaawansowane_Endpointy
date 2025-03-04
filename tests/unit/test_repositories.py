@@ -10,3 +10,6 @@ def test_user_repository():
 
     retrieved_user = repo.get(1)
     assert retrieved_user == user
+
+    updated_user = repo.update(1, {"lastName": "Smith"})
+    assert updated_user["lastName"] == "Smith"

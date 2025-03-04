@@ -16,3 +16,9 @@ class UserRepository:
         self._users[user_id] = {"id": user_id, **user_data}
         self._next_id += 1
         return self._users[user_id]
+
+    def update(self, user_id: int, user_data: dict) -> dict:
+        if user_id not in self._users:
+            raise ValueError("User not found")
+        self._users[user_id].update(user_data)
+        return self._users[user_id]

@@ -12,3 +12,6 @@ class UserController:
 
     def add(self, user_data: dict) -> dict:
         return self.repository.add(user_data)
+
+    def update(self, user_id: int, user_data: dict) -> dict:
+        return self.repository.update(user_id, user_data)

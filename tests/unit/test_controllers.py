@@ -44,3 +44,13 @@ def test_user_controller_add(controller: UserController, repository: Mock) -> No
     result = controller.add(user_data)
     assert result == created_user
     repository.add.assert_called_once_with(user_data)
+
+def test_user_controller_update(controller: UserController, repository: Mock) -> None:
+    user_id = 1
+    user_data = {"lastName": "Smith"}
+    updated_user = {"id": 1, "firstName": "John", "lastName": "Smith", "birthYear": 1990, "group": "user"}
+    repository.update.return_value = updated_user
+
+    result = controller.update(user_id, user_data)
+    assert result == updated_user
+    repository.update.assert_called_once_with(user_id, user_data)
