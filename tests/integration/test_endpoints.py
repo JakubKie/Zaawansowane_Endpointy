@@ -23,3 +23,10 @@ def test_get_all_users(client: FlaskClient) -> None:
     client.post("/users", json=user_data)
     response = client.get("/users")
     assert response.status_code == HTTPStatus.OK
+
+def test_update_user(client: FlaskClient) -> None:
+    user_data = {"firstName": "John", "lastName": "Doe", "birthYear": 1990, "group": "user"}
+    client.post("/users", json=user_data)
+    update_data = {"lastName": "Smith"}
+    response = client.patch("/users/1", json=update_data)
+    assert response.status_code == HTTPStatus.OK

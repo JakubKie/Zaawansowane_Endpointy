@@ -34,3 +34,12 @@ def add_user() -> ResponseValue:
 
     controller.add(user_data)
     return "", 201
+
+@app.patch("/users/<int:id>")
+def update_user(id: int) -> ResponseValue:
+    try:
+        user_data = request.get_json()
+        controller.update(id, user_data)
+    except ValueError:
+        return "", 404
+    return "", 200
