@@ -43,3 +43,11 @@ def update_user(id: int) -> ResponseValue:
     except ValueError:
         return "", 404
     return "", 200
+
+@app.delete("/users/<int:id>")
+def delete_user(id: int) -> ResponseValue:
+    try:
+        controller.delete(id)
+    except ValueError:
+        return "", 404
+    return "", 204
